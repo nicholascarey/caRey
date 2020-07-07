@@ -15,7 +15,7 @@ status](https://travis-ci.com/nicholascarey/caRey.svg?branch=master)](https://tr
 status](https://ci.appveyor.com/api/projects/status/github/nicholascarey/caRey?branch=master&svg=true)](https://ci.appveyor.com/project/nicholascarey/caRey)
 [![Coverage
 status](https://codecov.io/gh/nicholascarey/caRey/branch/master/graph/badge.svg)](https://codecov.io/github/nicholascarey/caRey?branch=master)
-[![DOI](https://zenodo.org/badge/174339770.svg)](https://zenodo.org/badge/latestdoi/174339770)
+[![DOI](https://zenodo.org/badge/277777549.svg)](https://zenodo.org/badge/latestdoi/277777549)
 
 The `caRey` package is a collection of R functions. I will add to it
 periodically ([suggestions
@@ -24,7 +24,8 @@ intended to be a fully featured package, more a collection of handy
 functions.
 
 If you use it a citation using this [Zenodo
-DOI](https://zenodo.org/record/3668902) would be much appreciated.
+DOI](https://zenodo.org/badge/latestdoi/277777549) would be much
+appreciated.
 
 ### Installation
 
