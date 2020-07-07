@@ -1,4 +1,18 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+sudo: false
 cache: packages
+r_packages:
+  - covr
+  - devtools
+  - testthat
+r_github_packages:
+    #- Rscript -e 'install.packages(c("devtools", "testthat"))'
+    - nicholascarey/respfun
+os:
+  - linux
+  - osx
+after_success:
+  - Rscript -e 'covr::codecov()'
+

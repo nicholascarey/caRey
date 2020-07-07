@@ -17,13 +17,13 @@
 #' @examples
 #' ## Simple example
 #' for(i in 1:1000) {
-#'     Sys.sleep(0.01) # pause or it will be too quick
+#'     Sys.sleep(0.005) # pause or it will be too quick
 #'     progress(i, max = 1000)
 #'     }
 #'
 #' ## Example with custom message
 #' for(i in 1:1000) {
-#'     Sys.sleep(0.01) # pause or it will be too quick
+#'     Sys.sleep(0.005) # pause or it will be too quick
 #'     progress(i, max = 1000, message = "Operation progress")
 #'     }
 #'
