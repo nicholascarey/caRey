@@ -4,7 +4,6 @@
   - [Installation](#installation)
   - [Functions](#functions)
       - [`progress()`](#progress)
-  - [Future functionality](#future-functionality)
   - [Bug reports](#bug-reports)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -17,15 +16,8 @@ status](https://ci.appveyor.com/api/projects/status/github/nicholascarey/caRey?b
 status](https://codecov.io/gh/nicholascarey/caRey/branch/master/graph/badge.svg)](https://codecov.io/github/nicholascarey/caRey?branch=master)
 [![DOI](https://zenodo.org/badge/277777549.svg)](https://zenodo.org/badge/latestdoi/277777549)
 
-The `caRey` package is a collection of R functions. I will add to it
-periodically ([suggestions
-welcome](https://github.com/nicholascarey/caRey/issues)). It is not
-intended to be a fully featured package, more a collection of handy
-functions.
-
-If you use it a citation using this [Zenodo
-DOI](https://zenodo.org/badge/latestdoi/277777549) would be much
-appreciated.
+The `caRey` package is a collection of general R functions that may be
+useful in general data management or processing.
 
 ### Installation
 
@@ -40,11 +32,11 @@ devtools::install_github("nicholascarey/caRey")
 
 #### `progress()`
 
-Progress bar function.
+A simple progress bar function for use in loops or operations where you
+want some indication of progress and how long it will take.
 
 ``` r
 ## Simple example with custom message
-
 for(i in 1:1000) {
     Sys.sleep(0.01) # pause or it will be too quick
     progress(i, max = 1000, message = "Operation progress")
@@ -52,12 +44,6 @@ for(i in 1:1000) {
 ```
 
     #> [=========================                         ] 50% Operation progress
-
-### Future functionality
-
-In due course I’ll add a few more functions. Suggestions for additional
-functions are welcome via [email](mailto:nicholascarey@gmail.com), or by
-[opening an issue](https://github.com/nicholascarey/caRey/issues).
 
 ### Bug reports
 
