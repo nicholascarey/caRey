@@ -11,7 +11,13 @@ Encoding: UTF-8
 URL: https://github.com/nicholascarey/caRey
 BugReports: https://github.com/nicholascarey/caRey/issues
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
     testthat
+Depends: 
+    R (>= 2.10)
+Imports: 
+    dplyr,
+    graphics,
+    zoo
