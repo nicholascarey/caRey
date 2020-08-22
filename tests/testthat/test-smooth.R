@@ -56,3 +56,37 @@ test_that("smooth - method = 'loess' outputs correct results", {
 })
 
 
+test_that("smooth - method = 'spline' outputs correct results", {
+  ## works
+  expect_error(smooth(resp_noisy.rd, n = 0.4, method = "spline", plot = T),
+                regexp = NA)
+  ## correct length
+  expect_equal(length(smooth(resp_noisy.rd, n = 0.2, method = "spline", plot = F)),
+                length(resp_noisy.rd))
+  ## check a couple of exact values in case something changes output in future
+  expect_equal(round(smooth(resp_noisy.rd, n = 0.2, method = "spline", plot = F)[c(1,935)], 6),
+               c(8.169039, 8.165303))
+  ## accepts n as both n entries and proportion
+  expect_equal(smooth(resp_noisy.rd, n = 0.2, method = "spline", plot = F),
+               smooth(resp_noisy.rd, n = round(length(resp_noisy.rd)*0.2),
+                      method = "spline", plot = F))
+})
+
+test_that("smooth - method = 'supersmooth' outputs correct results", {
+  ## works
+  expect_error(smooth(resp_noisy.rd, n = 0.4, method = "supersmooth", plot = T),
+                regexp = NA)
+  ## correct length
+  expect_equal(length(smooth(resp_noisy.rd, n = 0.2, method = "supersmooth", plot = F)),
+                length(resp_noisy.rd))
+  ## check a couple of exact values in case something changes output in future
+  expect_equal(round(smooth(resp_noisy.rd, n = 0.02, method = "supersmooth", plot = F)[c(1,935)], 6),
+               c(8.169576, 8.164984))
+  ## accepts n as both n entries and proportion
+  expect_equal(smooth(resp_noisy.rd, n = 0.2, method = "supersmooth", plot = F),
+               smooth(resp_noisy.rd, n = round(length(resp_noisy.rd)*0.2),
+                      method = "supersmooth", plot = F))
+})
+
+
+
