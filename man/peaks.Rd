@@ -16,7 +16,7 @@ be designated a peak, a value must have \code{span} \emph{lower} values on
 
 \item{partial}{logical. Default TRUE. Should the function attempt to identify
 peaks or troughs at the start or end of the vector where \code{span} is
-truncated.}
+truncated. See Details.}
 
 \item{height}{numeric. Value between 0 and 1. Sets threshold for peak or
 trough 'prominence'. See Details.}
