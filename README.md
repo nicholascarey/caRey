@@ -4,6 +4,8 @@
   - [Installation](#installation)
   - [Functions](#functions)
       - [`progress()`](#progress)
+      - [`smooth()`](#smooth)
+      - [`peaks()`](#peaks)
   - [Bug reports](#bug-reports)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -16,8 +18,8 @@ status](https://ci.appveyor.com/api/projects/status/github/nicholascarey/caRey?b
 status](https://codecov.io/gh/nicholascarey/caRey/branch/master/graph/badge.svg)](https://codecov.io/github/nicholascarey/caRey?branch=master)
 [![DOI](https://zenodo.org/badge/277777549.svg)](https://zenodo.org/badge/latestdoi/277777549)
 
-The `caRey` package is a collection of general R functions that may be
-useful in general data management or processing.
+The `caRey` package is a collection of R functions that may be useful in
+general data management or processing.
 
 ### Installation
 
@@ -38,12 +40,35 @@ want some indication of progress and how long it will take.
 ``` r
 ## Simple example with custom message
 for(i in 1:1000) {
-    Sys.sleep(0.01) # pause or it will be too quick
+    Sys.sleep(0.01) # pause or this example will be too quick
     progress(i, max = 1000, message = "Operation progress")
     }
 ```
 
     #> [=========================                         ] 50% Operation progress
+
+#### `smooth()`
+
+A general data smoothing function with several methods including moving
+average, splines, and loess regression.
+
+``` r
+smooth(sine_noisy.rd, method = "spline")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" />
+
+#### `peaks()`
+
+A function that automatically identifies peaks (and troughs) in
+oscillating data, with several options for adjusting the detection
+sensitivity.
+
+``` r
+peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which = "p")
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;" />
 
 ### Bug reports
 
