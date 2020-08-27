@@ -15,6 +15,7 @@
 #'   Should not be more than a few words.
 #'
 #' @examples
+#' \dontrun{
 #' ## Simple example
 #' for(i in 1:1000) {
 #'     Sys.sleep(0.005) # pause or it will be too quick
@@ -25,6 +26,7 @@
 #' for(i in 1:1000) {
 #'     Sys.sleep(0.005) # pause or it will be too quick
 #'     progress(i, max = 1000, message = "Operation progress")
+#'     }
 #'     }
 #'
 #' @author Nicholas Carey - \email{nicholascarey@gmail.com}

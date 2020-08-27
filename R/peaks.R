@@ -113,6 +113,7 @@
 #'   the default "b" for both.
 #'
 #' @examples
+#' peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which = "p")
 #'
 #' @author Nicholas Carey - \email{nicholascarey@gmail.com}
 #' @importFrom zoo rollapply
@@ -245,15 +246,16 @@ peaks <- function(x,
   class(output) <- "peaks"
 
   ## plot
-  if(plot) plot(output, plot.which = plot.which)
+  if(plot) plot(x = output, plot.which = plot.which)
 
   ## return
   return(output)
 }
 
-#' S3 plotting function
+
+# S3 plotting function
 #' @export
-plot.peaks <- function(x, plot.which = "b"){
+plot.peaks <- function(x, plot.which = "b", ...){
 
   parorig <- par(no.readonly = TRUE) # save original par settings
 

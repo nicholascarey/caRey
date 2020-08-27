@@ -119,6 +119,7 @@ peak and trough
 }
 }
 \examples{
+peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which = "p")
 
 }
 \author{
