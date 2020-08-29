@@ -6,6 +6,7 @@
       - [`progress()`](#progress)
       - [`smooth()`](#smooth)
       - [`peaks()`](#peaks)
+      - [`replace_tail()`, `replace_head()`](#replace_tail-replace_head)
   - [Bug reports](#bug-reports)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -69,6 +70,39 @@ peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which 
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;" />
+
+#### `replace_tail()`, `replace_head()`
+
+`replace_tail` is a simple solution for replacing the last `n` values in
+a vector. There are lots of ways of extracting the last `n` values, and
+a few of these can be used to replace them, but they are all not very
+elegant in code, leading to ugly examples such as:
+
+``` r
+## change last n values in x with 100
+x[(length(x)-n+1):length(x)] <- 100
+```
+
+Instead, this function does the same job with either a value or vector
+
+``` r
+# # Replace last 5 numeric values with single value
+x <- 1:10
+replace_tail(x, 5, 100)
+#>  [1]   1   2   3   4   5 100 100 100 100 100
+```
+
+``` r
+# # Replace tail with a vector
+x <- 1:20
+replace_tail(x, r = 100:96)
+#>  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 100  99  98  97
+#> [20]  96
+```
+
+Replacing the initial `n` values is much more straightforward in `R`
+syntax but `replace_head` makes a nice partner function and works the
+same way.
 
 ### Bug reports
 

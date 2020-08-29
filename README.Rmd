@@ -78,6 +78,31 @@ peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which 
 peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which = "p")
 ```
 
+#### `replace_tail()`, `replace_head()`
+
+`replace_tail` is a simple solution for replacing the last `n` values in a vector. There are lots of ways of extracting the last `n` values, and a few of these can be used to replace them, but they are all not very elegant in code, leading to ugly examples such as: 
+
+```{r eval = F}
+## change last n values in x with 100
+x[(length(x)-n+1):length(x)] <- 100
+```
+
+Instead, this function does the same job with either a value or vector
+
+```{r eval = T}
+# # Replace last 5 numeric values with single value
+x <- 1:10
+replace_tail(x, 5, 100)
+```
+
+``` {r eval = T}
+# # Replace tail with a vector
+x <- 1:20
+replace_tail(x, r = 100:96)
+```
+
+Replacing the initial `n` values is much more straightforward in `R` syntax but `replace_head` makes a nice partner function and works the same way.
+
 ### Bug reports
 If you find any bugs, weird behaviour, or other issues please [let me know](mailto:nicholascarey@gmail.com) or [open an issue](https://github.com/nicholascarey/caRey/issues).
 

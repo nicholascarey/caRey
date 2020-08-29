@@ -9,7 +9,8 @@ replace_head(v, n, r)
 \arguments{
 \item{v}{vector. Input vector to have head replaced.}
 
-\item{n}{integer. Number of values at start of \code{v} to replace.}
+\item{n}{integer. Number of values at start of \code{v} to replace. If left NULL,
+this will be calculated as the length of \code{r}.}
 
 \item{r}{String, logical, numeric etc. What to use as replacement. Should
 either be a single value or vector of length \code{n}.}

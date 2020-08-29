@@ -10,7 +10,8 @@
 #' @usage replace_head(v, n, r)
 #'
 #' @param v vector. Input vector to have head replaced.
-#' @param n integer. Number of values at start of `v` to replace.
+#' @param n integer. Number of values at start of `v` to replace. If left NULL,
+#'   this will be calculated as the length of `r`.
 #' @param r String, logical, numeric etc. What to use as replacement. Should
 #'   either be a single value or vector of length `n`.
 #'
@@ -35,7 +36,10 @@
 #' @md
 #' @export
 
-replace_head <- function(v, n, r){
+replace_head <- function(v = NULL, n = NULL, r = NULL){
+  ## if n is NULL, just make it same length as r
+  if(is.null(n)) n <- length(r)
+
   if(n > length(v) || n %% 1 != 0 || length(n) > 1)
     stop("replace_head: 'n' should be a single integer not greater than the length of 'v'.")
   if(length(r) != 1 && length(r) != n )

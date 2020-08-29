@@ -9,7 +9,8 @@ replace_tail(v, n, r)
 \arguments{
 \item{v}{vector. Input vector to have tail replaced.}
 
-\item{n}{integer. Number of values at end of \code{v} to replace.}
+\item{n}{integer. Number of values at tail of \code{v} to replace. If left NULL,
+this will be calculated as the length of \code{r}.}
 
 \item{r}{String, logical, numeric etc. What to use as replacement. Should
 either be a single value or vector of length \code{n}.}
@@ -26,7 +27,7 @@ A simple solution to the lack of an elegant way in \code{R} of simply
 replacing the last \code{n} values in a vector. There are lots of ways of
 extracting the last \code{n} values, and a few of these can be used to replace
 them, but they are all not very elegant in code. There is a similar
-function for the much easier operation to replace the initial \code{n} values:
+function for the (much easier) operation to replace the initial \code{n} values:
 \code{\link[=replace_head]{replace_head()}}.
 }
 \examples{

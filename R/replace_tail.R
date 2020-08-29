@@ -6,13 +6,14 @@
 #'   replacing the last `n` values in a vector. There are lots of ways of
 #'   extracting the last `n` values, and a few of these can be used to replace
 #'   them, but they are all not very elegant in code. There is a similar
-#'   function for the much easier operation to replace the initial `n` values:
+#'   function for the (much easier) operation to replace the initial `n` values:
 #'   [replace_head()].
 #'
 #' @usage replace_tail(v, n, r)
 #'
 #' @param v vector. Input vector to have tail replaced.
-#' @param n integer. Number of values at end of `v` to replace.
+#' @param n integer. Number of values at tail of `v` to replace. If left NULL,
+#'   this will be calculated as the length of `r`.
 #' @param r String, logical, numeric etc. What to use as replacement. Should
 #'   either be a single value or vector of length `n`.
 #'
@@ -37,7 +38,10 @@
 #' @md
 #' @export
 
-replace_tail <- function(v, n, r){
+replace_tail <- function(v = NULL, n = NULL, r = NULL){
+  ## if n is NULL, just make it same length as r
+  if(is.null(n)) n <- length(r)
+
   if(n > length(v) || n %% 1 != 0 || length(n) > 1)
     stop("replace_tail: 'n' should be a single integer not greater than the length of 'v'.")
   if(length(r) != 1 && length(r) != n )
