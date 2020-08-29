@@ -4,27 +4,29 @@
 \alias{peaks}
 \title{peaks}
 \usage{
-peaks(x, span = NULL, partial = TRUE, height = NULL, smooth.method =
-  NULL, smooth.n = NULL, plot = TRUE, plot.which = "b")
+peaks(x, span = NULL, prominence = NULL, partial = TRUE, smooth.method
+  = NULL, smooth.n = NULL, plot = TRUE, plot.which = "b")
 }
 \arguments{
 \item{x}{numeric. A numeric vector.}
 
-\item{span}{integer. Sets window size for peak (or trough) identification; to
-be designated a peak, a value must have \code{span} \emph{lower} values on
-\emph{both} sides of it (higher for troughs).}
+\item{span}{numeric. Sets window size for peak (or trough) identification; to
+be designated a peak, a value must be the highest value (lowest for
+troughs) within a rolling window of width \code{span}. Can be entered as either
+a window of number of values, or value between 0 and 1 of proportion of
+total data length. See Details.}
 
-\item{partial}{logical. Default TRUE. Should the function attempt to identify
-peaks or troughs at the start or end of the vector where \code{span} is
-truncated. See Details.}
-
-\item{height}{numeric. Value between 0 and 1. Sets threshold for peak or
+\item{prominence}{numeric. Value between 0 and 1. Sets threshold for peak or
 trough 'prominence'. See Details.}
 
-\item{smooth.method}{string. Method by which to smooth data before peak
-identification. Optional, default is \code{NULL}. See \code{\link[=smooth]{smooth()}}.}
+\item{partial}{logical. Default TRUE. Should the function attempt to identify
+peaks or troughs at the start or end of the vector where the \code{span} window
+is truncated? See Details.}
 
-\item{smooth.n}{string. Smoothing factor. See \code{\link[=smooth]{smooth()}}.}
+\item{smooth.method}{string. Method by which to smooth data before peak
+identification. Optional. Default is \code{NULL}. See \code{\link[=smooth]{smooth()}}.}
+
+\item{smooth.n}{numeric. Smoothing factor. See \code{\link[=smooth]{smooth()}}.}
 
 \item{plot}{logical. Plots the result.}
 
@@ -38,53 +40,62 @@ Identify peaks and troughs in oscillating data.
 \code{peaks} scans a vector of numeric values and identifies peaks and
 troughs.
 
-The required factor (\code{span}) and two optional factors (smoothing and
+The required input (\code{span}) and two optional inputs (smoothing and
 \code{height}), need to be balanced to successfully identify peaks and troughs.
-Characteristics such as data noisiness, amplitude, etc will affect how
-important these are and how successful the identification process is.
+Characteristics such as data noisiness, amplitude, wavelength etc will
+affect how important each of these are and how successful the
+identification process is.
 
-\strong{Span}
+\strong{span}
 
-The most important parameter in determining a peak is the \code{span}. This
-sets the threshold for identification; to be designated a peak, a value
-(after smoothing) must be the highest value within the \code{span} window
-(lowest value for troughs).
+The most important parameter in determining peaks is the \code{span}, which sets
+the threshold for identification. A rolling window of width \code{span} moves
+across the data, and to be designated a peak a value (after any smoothing)
+must be the highest value within that window (or the lowest value for
+troughs). The \code{span} window can be entered as an integer number of values
+(e.g. \code{span = 11}), or if between 0 and 1 a proportion of the total data
+length (e.g. \code{span = 0.1}). Note: strictly speaking, the function tests
+\code{floor(span/2)} values before and after each central value, therefore any
+even \code{span} inputs are rounded up. That is \code{span = 10} and \code{span = 11} will
+both result in an effective moving window of 11 values, with the central
+value tested against the 5 values before and after it.
 
 \strong{Smoothing}
 
-For noisy data there is optional smoothing functionality via
-\code{smooth_method}. See \code{\link[=smooth]{smooth()}} for the methods available and appropriate
-\code{smooth.n} values. \code{smooth.method = "spline"} works particularly well for
-oscillating data.
+For noisy data there is optional smoothing functionality via the
+\code{smooth_method} input. See \code{\link[=smooth]{smooth()}} for the methods available and
+appropriate \code{smooth.n} values. \code{smooth.method = "spline"} works
+particularly well for oscillating data.
 
-\strong{Height}
+\strong{Prominence}
 
-Peak identification is also affected by the optional \code{height} argument.
-This sets a threshold of 'prominence' for peak identification (or 'depth'
-for a trough). This should be a value between 0 and 1 describing a
-proportion of the total \code{range} of the data. Only peaks or troughs
-containing a proportional range equal to or above this within their \code{span}
+Peak identification is also affected by the optional \code{prominence} argument.
+This sets a threshold of 'prominence' for peak identification (equivalent
+to 'depth' for a trough). This should be a value between 0 and 1 describing
+a proportion of the total range of the data. Only peaks or troughs
+containing a range equal to or above this proportion within their \code{span}
 window will be retained. Essentially the higher this is set, the more
-prominent the peaks, or deeper the troughs, must be to be identified. To
-help with appropriate values, range elements are included in the output.
-Peaks and troughs can have different \code{height} thresholds: simply enter them
-as a vector of two values in peak-trough order. E.g. \code{height = c(0.2, 0.1)}.
+prominent the peaks must be to be identified (or deeper the troughs). To
+help with choosing appropriate values, ranges for peaks and troughs are
+included in the output. Peaks and troughs can have different \code{prominence}
+thresholds: simply enter them as a vector of two values in peak-trough
+order. E.g. \code{prominence = c(0.2, 0.1)}.
 
-\strong{Matching values}
+\strong{Equal values within a \code{span} window}
 
-If there happens to be equal values within the \code{span} range, the first
-occurrence is designated as the peak. If peaks are being missed because of
-this, use a lower \code{span}. If there are many instances of equal values, try
-smoothing the data.
+If there happens to be equal values within a \code{span} window, the first
+occurrence is designated as the peak or trough. If peaks or troughs are
+being missed because of this, use a lower \code{span}. If there are many
+instances of equal values, try smoothing the data.
 
 \strong{Partial windows}
 
 A rolling window of width \code{span} is used across the data to identify peaks.
 At the start and end of the data vector this window will overlap the start
 and end. The default \code{partial = TRUE} input tells the function to attempt
-to identify peaks near the start/end of the data where the \code{span} input
-would not supply enough data points. Change this to \code{FALSE} if you see odd
-matching behaviour at the start or end of the data.
+to identify peaks near the start/end of the data where the \code{span} width
+window is not complete. Change this to \code{FALSE} if you see odd matching
+behaviour at the start or end of the data.
 
 \strong{Plot}
 

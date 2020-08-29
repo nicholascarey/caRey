@@ -1,7 +1,7 @@
 Package: caRey
 Type: Package
 Title: Collection of Useful R Functions
-Version: 0.2.0
+Version: 0.2.1
 Author: Nicholas Carey
 Maintainer: Nicholas Carey <nicholascarey@gmail.com>
 Description: Collection of Useful R Functions
