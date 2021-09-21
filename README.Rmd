@@ -54,16 +54,16 @@ for(i in 1:1000) {
     progress(500, max = 1000, message = "Operation progress")
 ```
 
-#### `smooth()`
+#### `smoother()`
 
 A general data smoothing function with several methods including moving average, splines, and loess regression. 
 
 ```{r eval = F}
-smooth(sine_noisy.rd, method = "spline")
+smoother(sine_noisy.rd, method = "spline")
 ```
 
 ```{r eval = T, echo = F, out.width = '60%', fig.align='center', results='hide', fig.keep='all'}
-smooth(sine_noisy.rd, method = "spline")
+smoother(sine_noisy.rd, method = "spline")
 ```
 
 #### `peaks()`
@@ -80,7 +80,7 @@ peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which 
 
 #### `replace_tail()`, `replace_head()`
 
-`replace_tail` is a simple solution for replacing the last `n` values in a vector. There are lots of ways of extracting the last `n` values, and a few of these can be used to replace them, but they are all not very elegant in code, leading to ugly examples such as: 
+`replace_tail` is a simple solution for replacing the last `n` values in a vector. There are lots of ways of extracting the last `n` values, and a few of these can be used to replace them, but can be somewhat inelegant, leading to difficult to read code such as: 
 
 ```{r eval = F}
 ## change last n values in x with 100

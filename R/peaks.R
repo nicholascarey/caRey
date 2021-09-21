@@ -16,10 +16,10 @@
 #'   The most important parameter in determining peaks is the `span`, which sets
 #'   the threshold for identification. A rolling window of width `span` moves
 #'   across the data, and to be designated a peak a value (after any smoothing)
-#'   must be the highest value within that window (or the lowest value for
-#'   troughs). The `span` window can be entered as an integer number of values
-#'   (e.g. `span = 11`), or if between 0 and 1 a proportion of the total data
-#'   length (e.g. `span = 0.1`). Note: strictly speaking, the function tests
+#'   must be the highest value within that window (or lowest value for troughs).
+#'   The `span` window can be entered as an integer number of values (e.g. `span
+#'   = 11`), or if between 0 and 1 is a proportion of the total data length
+#'   (e.g. `span = 0.1`). Note: strictly speaking, the function tests
 #'   `floor(span/2)` values before and after each central value, therefore any
 #'   even `span` inputs are rounded up. That is `span = 10` and `span = 11` will
 #'   both result in an effective moving window of 11 values, with the central
@@ -28,7 +28,7 @@
 #'   **Smoothing**
 #'
 #'   For noisy data there is optional smoothing functionality via the
-#'   `smooth_method` input. See [smooth()] for the methods available and
+#'   `smooth_method` input. See [smoother()] for the methods available and
 #'   appropriate `smooth.n` values. `smooth.method = "spline"` works
 #'   particularly well for oscillating data.
 #'
@@ -71,7 +71,7 @@
 #'   (green points and lines) and troughs (blue points and lines) are
 #'   highlighted within the data. Change to `plot.which = "p"` to plot only
 #'   peaks, or `plot.which = "t"` for only troughs. This does not affect the
-#'   output.
+#'   output object.
 #'
 #'   **Output**
 #'
@@ -116,8 +116,8 @@
 #'   peaks or troughs at the start or end of the vector where the `span` window
 #'   is truncated? See Details.
 #' @param smooth.method string. Method by which to smooth data before peak
-#'   identification. Optional. Default is `NULL`. See [smooth()].
-#' @param smooth.n numeric. Smoothing factor. See [smooth()].
+#'   identification. Optional. Default is `NULL`. See [smoother()].
+#' @param smooth.n numeric. Smoothing factor. See [smoother()].
 #' @param plot logical. Plots the result.
 #' @param plot.which string. What to plot: "p" for peaks, "t" for troughs, or
 #'   the default "b" for both.
@@ -173,7 +173,7 @@ peaks <- function(x,
     smooth = FALSE
 
   ## smooth x
-  if(smooth) z <- smooth(x, n = smooth.n, method = smooth.method, plot = FALSE) else
+  if(smooth) z <- smoother(x, n = smooth.n, method = smooth.method, plot = FALSE) else
     z <- x
 
   ## For first and last 'span' values, the central value is not the one of

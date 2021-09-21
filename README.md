@@ -1,13 +1,13 @@
 `caRey`
 ================
 
-  - [Installation](#installation)
-  - [Functions](#functions)
-      - [`progress()`](#progress)
-      - [`smooth()`](#smooth)
-      - [`peaks()`](#peaks)
-      - [`replace_tail()`, `replace_head()`](#replace_tail-replace_head)
-  - [Bug reports](#bug-reports)
+-   [Installation](#installation)
+-   [Functions](#functions)
+    -   [`progress()`](#progress)
+    -   [`smoother()`](#smoother)
+    -   [`peaks()`](#peaks)
+    -   [`replace_tail()`, `replace_head()`](#replace_tail-replace_head)
+-   [Bug reports](#bug-reports)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -46,15 +46,15 @@ for(i in 1:1000) {
     }
 ```
 
-    #> [=========================                         ] 50% Operation progress
+    #> [===========================                           ]  50% Operation progress
 
-#### `smooth()`
+#### `smoother()`
 
 A general data smoothing function with several methods including moving
 average, splines, and loess regression.
 
 ``` r
-smooth(sine_noisy.rd, method = "spline")
+smoother(sine_noisy.rd, method = "spline")
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" />
@@ -75,8 +75,8 @@ peaks(swim_y.rd, span = 5, smooth.method = "spline", smooth.n = 0.4, plot.which 
 
 `replace_tail` is a simple solution for replacing the last `n` values in
 a vector. There are lots of ways of extracting the last `n` values, and
-a few of these can be used to replace them, but they are all not very
-elegant in code, leading to ugly examples such as:
+a few of these can be used to replace them, but can be somewhat
+inelegant, leading to difficult to read code such as:
 
 ``` r
 ## change last n values in x with 100

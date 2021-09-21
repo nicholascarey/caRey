@@ -24,9 +24,9 @@ peaks or troughs at the start or end of the vector where the \code{span} window
 is truncated? See Details.}
 
 \item{smooth.method}{string. Method by which to smooth data before peak
-identification. Optional. Default is \code{NULL}. See \code{\link[=smooth]{smooth()}}.}
+identification. Optional. Default is \code{NULL}. See \code{\link[=smoother]{smoother()}}.}
 
-\item{smooth.n}{numeric. Smoothing factor. See \code{\link[=smooth]{smooth()}}.}
+\item{smooth.n}{numeric. Smoothing factor. See \code{\link[=smoother]{smoother()}}.}
 
 \item{plot}{logical. Plots the result.}
 
@@ -51,10 +51,9 @@ identification process is.
 The most important parameter in determining peaks is the \code{span}, which sets
 the threshold for identification. A rolling window of width \code{span} moves
 across the data, and to be designated a peak a value (after any smoothing)
-must be the highest value within that window (or the lowest value for
-troughs). The \code{span} window can be entered as an integer number of values
-(e.g. \code{span = 11}), or if between 0 and 1 a proportion of the total data
-length (e.g. \code{span = 0.1}). Note: strictly speaking, the function tests
+must be the highest value within that window (or lowest value for troughs).
+The \code{span} window can be entered as an integer number of values (e.g. \code{span = 11}), or if between 0 and 1 is a proportion of the total data length
+(e.g. \code{span = 0.1}). Note: strictly speaking, the function tests
 \code{floor(span/2)} values before and after each central value, therefore any
 even \code{span} inputs are rounded up. That is \code{span = 10} and \code{span = 11} will
 both result in an effective moving window of 11 values, with the central
@@ -63,7 +62,7 @@ value tested against the 5 values before and after it.
 \strong{Smoothing}
 
 For noisy data there is optional smoothing functionality via the
-\code{smooth_method} input. See \code{\link[=smooth]{smooth()}} for the methods available and
+\code{smooth_method} input. See \code{\link[=smoother]{smoother()}} for the methods available and
 appropriate \code{smooth.n} values. \code{smooth.method = "spline"} works
 particularly well for oscillating data.
 
@@ -106,7 +105,7 @@ results are plotted. The default \code{plot.which = "b"} means \emph{both} peaks
 (green points and lines) and troughs (blue points and lines) are
 highlighted within the data. Change to \code{plot.which = "p"} to plot only
 peaks, or \code{plot.which = "t"} for only troughs. This does not affect the
-output.
+output object.
 
 \strong{Output}
 
