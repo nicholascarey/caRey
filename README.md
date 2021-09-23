@@ -10,14 +10,17 @@
 -   [Bug reports](#bug-reports)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.com/nicholascarey/caRey.svg?branch=master)](https://travis-ci.com/nicholascarey/caRey)
+[![GitHub R package
+version](https://img.shields.io/github/r-package/v/nicholascarey/caRey)](https://github.com/nicholascarey/caRey)
+[![R-CMD-check](https://github.com/nicholascarey/caRey/workflows/R-CMD-check/badge.svg)](https://github.com/nicholascarey/caRey/actions)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/nicholascarey/caRey?branch=master&svg=true)](https://ci.appveyor.com/project/nicholascarey/caRey)
 [![Coverage
 status](https://codecov.io/gh/nicholascarey/caRey/branch/master/graph/badge.svg)](https://codecov.io/github/nicholascarey/caRey?branch=master)
 [![DOI](https://zenodo.org/badge/277777549.svg)](https://zenodo.org/badge/latestdoi/277777549)
+<!-- badges: end -->
 
 The `caRey` package is a collection of R functions that may be useful in
 general data management or processing.
