@@ -4,8 +4,8 @@ Title: Collection of Useful R Functions
 Version: 0.3.0
 Author: Nicholas Carey
 Maintainer: Nicholas Carey <nicholascarey@gmail.com>
-Description: Collection of Useful R Functions
-    General data wrangling.
+Description: Collection of Useful R Functions. 
+    General data manipulation and wrangling.
 License: GPL-3
 Encoding: UTF-8
 URL: https://github.com/nicholascarey/caRey
