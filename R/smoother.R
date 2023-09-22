@@ -50,11 +50,11 @@
 #'  examples. For more control over smoothing using this method, see [supsmu()].
 #'
 #'@section Plotting: If `plot = TRUE` a three panel plot is produced of the
-#'  original data, the smoothed data, and the smoothed data plotted as a line
-#'  over the original data. Each single panel can be plotted alone using the
-#'  `panel` argument (e.g. `panel = 3`).
+#'  original data values, the smoothed data values, and the smoothed data
+#'  plotted as a line over the original data. Each single panel can be plotted
+#'  alone using the `panel` argument (e.g. `panel = 3`).
 #'
-#'@usage smooth(x, n = NULL, method = "movav", plot = TRUE, panel = "all")
+#'@usage smoother(x, n = NULL, method = "movav", plot = TRUE, panel = "all")
 #'
 #'@param x numeric. A numeric vector.
 #'@param n numeric. Smoothing factor. See Details.
@@ -69,56 +69,56 @@
 #' @examples
 #' ## Moving average smoothing
 #' ## Using a 10% rolling window
-#' smooth(resp_noisy.rd, n = 0.1, method = "movav")
+#' smoother(resp_noisy.rd, n = 0.1, method = "movav")
 #' ## Same size window expressed as number of data values
-#' smooth(resp_noisy.rd, n = 94, method = "movav")
+#' smoother(resp_noisy.rd, n = 94, method = "movav")
 #'
 #' ## Loess smoothing
 #' ## Good fit to the data, but doesn't capture the sinusoidal structure that well
-#' smooth(sine_noisy.rd, n = 0.1, method = "loess")
+#' smoother(sine_noisy.rd, n = 0.1, method = "loess")
 #' ## Higher 'n' works much better in this case
-#' smooth(sine_noisy.rd, n = 0.2, method = "loess")
+#' smoother(sine_noisy.rd, n = 0.2, method = "loess")
 #' ## But too high and range is lost
-#' smooth(sine_noisy.rd, n = 0.4, method = "loess")
+#' smoother(sine_noisy.rd, n = 0.4, method = "loess")
 #'
 #' ## Spline smoothing
-#' smooth(swim_y.rd, n = 0.4, method = "spline")
+#' smoother(swim_y.rd, n = 0.4, method = "spline")
 #'
 #' ## Supersmooth
 #' ## Same 'n' as above is much too high
-#' smooth(swim_y.rd, n = 0.4, method = "supersmooth")
+#' smoother(swim_y.rd, n = 0.4, method = "supersmooth")
 #' ## Much smaller values work better with this method
-#' smooth(swim_y.rd, n = 0.01, method = "supersmooth")
+#' smoother(swim_y.rd, n = 0.01, method = "supersmooth")
 #'
 #' ## Change plot output
 #' ## Plot all panels
-#' smooth(swim_y.rd, n = 0.01, method = "supersmooth",
+#' smoother(swim_y.rd, n = 0.01, method = "supersmooth",
 #'        plot = TRUE, panel = "all")
 #' ## Only plot third panel
-#' smooth(swim_y.rd, n = 0.01, method = "supersmooth",
+#' smoother(swim_y.rd, n = 0.01, method = "supersmooth",
 #'        plot = TRUE, panel = 3)
 #'
-#' @author Nicholas Carey - \email{nicholascarey@gmail.com}
-#' @md
-#' @import stats graphics
-#' @importFrom dplyr between
-#' @importFrom zoo rollapply
-#' @export
+#'@author Nicholas Carey - \email{nicholascarey@gmail.com}
+#'@md
+#'@import stats graphics
+#'@importFrom dplyr between
+#'@importFrom zoo rollapply
+#'@export
 
-smooth <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
+smoother <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
 
-  if(!is.numeric(x) || length(x) == 1) stop("smooth: the 'x' input should be a numeric vector.")
+  if(!is.numeric(x) || length(x) == 1) stop("smoother: the 'x' input should be a numeric vector.")
   if(is.null(n) && method %in% c("movav", "loess"))
-    stop("smooth: for 'movav' and 'loess' methods the 'n' input should be a single numeric value.")
+    stop("smoother: for 'movav' and 'loess' methods the 'n' input should be a single numeric value.")
   if(length(n) > 1)
-    stop("smooth: the 'n' input should be NULL or a single numeric value.")
+    stop("smoother: the 'n' input should be NULL or a single numeric value.")
   if(!(method %in% c("movav", "loess", "spline", "supersmooth")))
-    stop("smooth: 'method' not recognised.")
+    stop("smoother: 'method' not recognised.")
 
   if (method == "movav") {
     if(between(n, 0, 1) ) width <- length(x) * n else
       width <- n
-    smoooothed <- zoo::rollapply(x, width, FUN = mean, align = "center", partial = TRUE)
+    smoothered <- zoo::rollapply(x, width, FUN = mean, align = "center", partial = TRUE)
   }
 
   else if (method == "loess") {
@@ -127,7 +127,7 @@ smooth <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
 
     y.loess <- loess(x ~ seq(1, length(x), 1), span = span)
     ## predict new y
-    smoooothed <- predict(y.loess, seq(1, length(x), 1))
+    smoothered <- predict(y.loess, seq(1, length(x), 1))
   }
 
   else if (method == "spline") {
@@ -137,7 +137,7 @@ smooth <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
 
       y.spline <- smooth.spline(x ~ 1:length(x), spar = spar, cv = TRUE)
       ## predict new y
-      smoooothed <- predict(y.spline, 1:length(x))$y
+      smoothered <- predict(y.spline, 1:length(x))$y
   }
 
   else if (method == "supersmooth") {
@@ -147,7 +147,7 @@ smooth <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
 
       y.supsmu <- supsmu(x = 1:length(x), y = x, span = span)
       ## predict new y
-      smoooothed <- y.supsmu$y
+      smoothered <- y.supsmu$y
   }
 
   ## Plot data
@@ -174,7 +174,7 @@ smooth <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
       title("Original values", outer = FALSE)}
 
     if(panel == 2) {
-      plot(smoooothed, ylim = ylim, xlim = xlim, axes = FALSE)
+      plot(smoothered, ylim = ylim, xlim = xlim, axes = FALSE)
       Axis(side = 2, cex.axis = 1)
       Axis(side = 1, cex.axis = 1)
       title("Smoothed values")}
@@ -184,23 +184,23 @@ smooth <- function(x, n = NULL, method = "movav", plot = TRUE, panel = "all") {
            col = "green")
       Axis(side = 2, cex.axis = 1)
       Axis(side = 1, cex.axis = 1)
-      lines(smoooothed, ylim = ylim, xlim = xlim)
+      lines(smoothered, ylim = ylim, xlim = xlim)
       title("Combined")}
 
     if(panel == "all"){
       plot(x, ylim = ylim, xlim = xlim, axes = FALSE,
            col = "green")
       Axis(side = 2, cex.axis = 1)
-      plot(smoooothed, ylim = ylim, xlim = xlim, axes = FALSE)
+      plot(smoothered, ylim = ylim, xlim = xlim, axes = FALSE)
       Axis(side = 2, cex.axis = 1)
       plot(x, ylim = ylim, xlim = xlim, axes = FALSE,
            col = "green")
       Axis(side = 2, cex.axis = 1)
       Axis(side = 1, cex.axis = 1)
-      lines(smoooothed, ylim = ylim, xlim = xlim)
+      lines(smoothered, ylim = ylim, xlim = xlim)
     }
     on.exit(par(parorig)) # revert par settings to original
   }
 
-  return(smoooothed)
+  return(smoothered)
 }
