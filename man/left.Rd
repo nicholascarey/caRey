@@ -33,5 +33,5 @@ left(123456, 4)
 \code{\link{right}}
 }
 \author{
-Nicholas Carey - \link{nicholascarey@gmail.com}
+Nicholas Carey - \email{nicholascarey@gmail.com}
 }

@@ -1,13 +1,13 @@
 `caRey`
 ================
 
--   [Installation](#installation)
--   [Functions](#functions)
-    -   [`progress()`](#progress)
-    -   [`smoother()`](#smoother)
-    -   [`peaks()`](#peaks)
-    -   [`replace_tail()`, `replace_head()`](#replace_tail-replace_head)
--   [Bug reports](#bug-reports)
+- [Installation](#installation)
+- [Functions](#functions)
+  - [`progress()`](#progress)
+  - [`smoother()`](#smoother)
+  - [`peaks()`](#peaks)
+  - [`replace_tail()`, `replace_head()`](#replace_tail-replace_head)
+- [Bug reports](#bug-reports)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
@@ -15,11 +15,8 @@
 [![GitHub R package
 version](https://img.shields.io/github/r-package/v/nicholascarey/caRey)](https://github.com/nicholascarey/caRey)
 [![R-CMD-check](https://github.com/nicholascarey/caRey/workflows/R-CMD-check/badge.svg)](https://github.com/nicholascarey/caRey/actions)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/nicholascarey/caRey?branch=master&svg=true)](https://ci.appveyor.com/project/nicholascarey/caRey)
-[![Coverage
-status](https://codecov.io/gh/nicholascarey/caRey/branch/master/graph/badge.svg)](https://codecov.io/github/nicholascarey/caRey?branch=master)
 [![DOI](https://zenodo.org/badge/277777549.svg)](https://zenodo.org/badge/latestdoi/277777549)
+[![R-CMD-check](https://github.com/nicholascarey/caRey/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nicholascarey/caRey/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The `caRey` package is a collection of R functions that may be useful in
@@ -45,7 +42,7 @@ want some indication of progress and how long it will take.
 ## Simple example with custom message
 for(i in 1:1000) {
     Sys.sleep(0.01) # pause or this example will be too quick
-    progress(i, max = 1000, message = "Operation progress")
+    progress(i, total = 1000, message = "Operation progress")
     }
 ```
 

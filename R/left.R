@@ -22,7 +22,7 @@
 #' left("some text", 4)
 #' left(123456, 4)
 #'
-#' @author Nicholas Carey - \link{nicholascarey@gmail.com}
+#' @author Nicholas Carey - \email{nicholascarey@gmail.com}
 #' @md
 #' @export
 
