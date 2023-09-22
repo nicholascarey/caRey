@@ -17,10 +17,13 @@ version](https://img.shields.io/github/r-package/v/nicholascarey/caRey)](https:/
 [![R-CMD-check](https://github.com/nicholascarey/caRey/workflows/R-CMD-check/badge.svg)](https://github.com/nicholascarey/caRey/actions)
 [![DOI](https://zenodo.org/badge/277777549.svg)](https://zenodo.org/badge/latestdoi/277777549)
 [![R-CMD-check](https://github.com/nicholascarey/caRey/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nicholascarey/caRey/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/nicholascarey/caRey/branch/master/graph/badge.svg)](https://app.codecov.io/gh/nicholascarey/caRey?branch=master)
+
 <!-- badges: end -->
 
-The `caRey` package is a collection of R functions that may be useful in
-general data management or processing.
+The `caRey` package is a collection of handy R functions that may be
+useful in general data management or processing.
 
 ### Installation
 
